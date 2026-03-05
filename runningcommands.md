@@ -4,6 +4,8 @@ Create and activate a Python virtual environment.
 
 ```
 python -m venv venv
+```
+```
 venv\Scripts\activate
 ```
 
@@ -42,3 +44,20 @@ Explain asthma treatment
 ```
 
 If the model responds correctly, the Ollama setup is functioning and ready for integration with the RAG pipeline.
+### Running the fast api service
+
+
+```
+uvicorn backend.app:app --reload
+```
+
+Your API endpoints will be available at:
+```
+http://127.0.0.1:8000/docs
+```
+### Streamlit UI
+
+
+```
+streamlit run frontend/streamlit_app.py
+```

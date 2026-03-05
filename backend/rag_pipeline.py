@@ -1,8 +1,27 @@
 import os
-from backend.dataset_loader import load_documents
+from backend.dataset_loader import load_documents, chunk_text
 from backend.bm25_retriever import BM25Retriever
 from backend.ollama_client import ask_llm
 from backend.logger import logger
+from rank_bm25 import BM25Okapi   # ← missing import
+
+
+def add_document_to_index(text):
+
+    logger.info("Chunking uploaded document")
+
+    chunks = chunk_text(text)
+
+    retriever.documents.extend(chunks)
+
+    logger.info(f"Added {len(chunks)} chunks to retriever")
+
+    tokenized_docs = [doc.split() for doc in retriever.documents]
+
+    retriever.bm25 = BM25Okapi(tokenized_docs)
+
+    logger.info("BM25 index updated with new document")
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_PATH = os.path.join(BASE_DIR, "datasets", "medical_transcriptions.csv")
@@ -26,6 +45,6 @@ def rag_query(question):
 
     answer = ask_llm(context, question)
 
-    logger.info("Returning final RAG response") 
+    logger.info("Returning final RAG response")
 
     return answer

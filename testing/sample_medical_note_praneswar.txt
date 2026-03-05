@@ -1,0 +1,24 @@
+Patient Medical Note
+
+Patient Name: Praneswar
+Age: 21
+Gender: Male
+
+Chief Complaint:
+The patient reports frequent sneezing, nasal congestion, and itchy eyes,
+especially during the spring season.
+
+Medical History:
+The patient has a history of seasonal allergies and mild asthma.
+
+Diagnosis:
+Symptoms are consistent with allergic rhinitis triggered by pollen exposure.
+
+Treatment Plan:
+- Prescribed antihistamine (Cetirizine 10mg once daily)
+- Nasal corticosteroid spray (Fluticasone)
+- Recommended avoiding pollen exposure when possible
+- Advised follow-up visit in 2 weeks if symptoms persist
+
+Notes:
+Patient education provided regarding allergy triggers and preventive measures.

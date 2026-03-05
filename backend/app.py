@@ -2,7 +2,7 @@ from fastapi import FastAPI, UploadFile, File
 import os
 
 from crypto.dilithium_signature import DilithiumSigner, hash_document
-from backend.rag_pipeline import rag_query
+from backend.rag_pipeline import rag_query, add_document_to_index
 from backend.logger import logger
 
 app = FastAPI()
@@ -45,6 +45,20 @@ async def upload_document(file: UploadFile = File(...)):
         f.write(signature)
 
     logger.info("Document securely stored with Dilithium signature")
+
+    # -------- NEW PART --------
+    try:
+        text = content.decode("utf-8")
+
+        logger.info("Adding uploaded document to BM25 index")
+
+        add_document_to_index(text)
+
+        logger.info("Document successfully indexed")
+
+    except Exception as e:
+        logger.warning(f"Could not index uploaded file: {str(e)}")
+    # --------------------------
 
     return {
         "status": "stored",
