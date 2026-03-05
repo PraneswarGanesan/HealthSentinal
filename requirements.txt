@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pandas
+rank-bm25
+ollama
+langchain
+python-multipart
+streamlit
+pqcrypto
+cryptography
