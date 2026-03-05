@@ -1,45 +1,55 @@
 import os
-from backend.dataset_loader import load_documents, chunk_text
-from backend.bm25_retriever import BM25Retriever
+from backend.dataset_loader import chunk_text
 from backend.ollama_client import ask_llm
 from backend.logger import logger
-from rank_bm25 import BM25Okapi   # ← missing import
+from rank_bm25 import BM25Okapi
+
+
+logger.info("Initializing RAG pipeline")
+
+# initialize empty storage
+documents = []
+bm25 = None
 
 
 def add_document_to_index(text):
+
+    global documents, bm25
 
     logger.info("Chunking uploaded document")
 
     chunks = chunk_text(text)
 
-    retriever.documents.extend(chunks)
+    documents.extend(chunks)
 
-    logger.info(f"Added {len(chunks)} chunks to retriever")
+    logger.info(f"Added {len(chunks)} chunks")
 
-    tokenized_docs = [doc.split() for doc in retriever.documents]
+    tokenized_docs = [doc.split() for doc in documents]
 
-    retriever.bm25 = BM25Okapi(tokenized_docs)
+    bm25 = BM25Okapi(tokenized_docs)
 
-    logger.info("BM25 index updated with new document")
-
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_PATH = os.path.join(BASE_DIR, "datasets", "medical_transcriptions.csv")
-
-logger.info("Initializing RAG pipeline")
-
-documents = load_documents(DATA_PATH)
-
-retriever = BM25Retriever(documents)
-
-logger.info("RAG pipeline ready")
+    logger.info("BM25 index updated with uploaded documents")
 
 
 def rag_query(question):
 
+    global bm25, documents
+
     logger.info("Received new query")
 
-    docs = retriever.search(question)
+    if bm25 is None:
+        logger.warning("No documents indexed yet")
+        return "No medical documents uploaded yet."
+
+    tokenized_query = question.split()
+
+    scores = bm25.get_scores(tokenized_query)
+
+    top_indices = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:3]
+
+    docs = [documents[i] for i in top_indices]
+
+    logger.info("Retrieved relevant uploaded documents")
 
     context = "\n\n".join(docs)
 
@@ -48,3 +58,6 @@ def rag_query(question):
     logger.info("Returning final RAG response")
 
     return answer
+
+
+logger.info("RAG pipeline ready (waiting for uploaded documents)")
