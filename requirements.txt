@@ -8,3 +8,14 @@ python-multipart
 streamlit
 pqcrypto
 cryptography
+supabase
+boto3
+redis
+python-jose[cryptography]
+passlib[bcrypt]
+python-dotenv
+pydantic
+requests
+loguru
+pqc 
+argon2-cffi
