@@ -15,3 +15,7 @@ Why redis queue these are used in the sense where multiple users will access the
 
 ## Security Module
 In this module i have developed the security module where i have developed the code to help the users to store their files and folders in the s3 bucket on the aws . Which is very useful in way that faster and secure way to store the files and folders . 
+
+## Rag Module 
+In this module i have developed the service package , retrival package and then the ollama client package these are the most important services for us to make for using the bm25 algorithm and the chunking of the datas.
+

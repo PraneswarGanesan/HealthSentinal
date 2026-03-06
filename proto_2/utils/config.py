@@ -22,6 +22,7 @@ class Settings:
     JWT_EXPIRATION = int(os.getenv("JWT_EXPIRATION", "60000"))
 
     OLLAMA_URL = os.getenv("OLLAMA_URL")
+    OLLAMA_MODEL = os.getenv("OLLAMA_MODEL")
 
 
 settings = Settings()
