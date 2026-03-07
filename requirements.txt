@@ -19,3 +19,7 @@ requests
 loguru
 pqc 
 argon2-cffi
+pandas 
+seaborn 
+matplotlib
+numpy

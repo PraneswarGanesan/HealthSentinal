@@ -1,0 +1,15 @@
+# Result files
+results/*
+
+# Logs
+*.log
+
+# Images
+*.png
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
