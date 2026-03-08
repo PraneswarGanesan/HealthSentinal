@@ -19,3 +19,7 @@ In this module i have developed the security module where i have developed the c
 ## Rag Module 
 In this module i have developed the service package , retrival package and then the ollama client package these are the most important services for us to make for using the bm25 algorithm and the chunking of the datas.
 
+## Running commands of the main.py 
+```
+uvicorn main:app --reload
+```
