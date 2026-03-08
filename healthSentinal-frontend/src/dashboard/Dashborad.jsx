@@ -14,7 +14,7 @@ const Stub = ({ title }) => (
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-black flex">
+    <div className="min-h-screen flex">
 
       <SidePanel />
 
