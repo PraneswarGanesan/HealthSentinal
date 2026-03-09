@@ -62,7 +62,9 @@ HealthSentinel improves on traditional healthcare document systems across every 
 
 ---
 
+
 ## System Architecture
+![System Architecture](./Research/ResultAnalysisWithAlgorithms/architecture-1.png)
 
 ```
 User Authentication (Supabase JWT)
