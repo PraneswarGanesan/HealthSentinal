@@ -114,19 +114,19 @@ Average Verify Time:  1.402 ms   (0.001402 s)
 
 #### Average Cryptographic Operation Times
 
-![Dilithium Average Performance](ResultAnalysis/results/dilithium_avg_performance.png)
+![Dilithium Average Performance](./Research/ResultAnalysisWithAlgorithms/dilithium_avg_performance.png)
 
 Both signing and verification complete well under **3 milliseconds** on average — negligible overhead relative to document upload/retrieval latency, confirming that post-quantum security can be added without meaningful performance penalty.
 
 #### Signing Time Distribution (n = 5,000)
 
-![Dilithium Sign Time Distribution](ResultAnalysis/results/dilithium_sign_distribution.png)
+![Dilithium Sign Time Distribution](./Research/ResultAnalysisWithAlgorithms/dilithium_sign_distribution.png)
 
 The signing time distribution is tightly concentrated around **1–3 ms**, with a long but low-frequency tail. The vast majority of operations complete in under 5 ms, confirming consistent performance under load.
 
 #### Verification Time Distribution (n = 5,000)
 
-![Dilithium Verify Time Distribution](ResultAnalysis/results/dilithium_verify_distribution.png)
+![Dilithium Verify Time Distribution](./Research/ResultAnalysisWithAlgorithms/dilithium_verify_distribution.png)
 
 Verification is faster than signing (~1.40 ms average), and even more tightly distributed — the peak is sharply concentrated below 2 ms. This makes real-time document integrity verification practical at scale.
 
@@ -146,25 +146,25 @@ Average Query Time: 4.711 ms   (0.004711 s)
 
 #### Retrieval Accuracy, Precision@3, and Recall@3
 
-![BM25 Accuracy Metrics](ResultAnalysis/results/bm25_accuracy_metrics.png)
+![BM25 Accuracy Metrics](./Research/ResultAnalysisWithAlgorithms/bm25_accuracy_metrics.png)
 
 BM25 achieves consistent performance across all three retrieval metrics — **~74–75%** — demonstrating that sparse retrieval without dense embeddings is effective for clinical document search. This is significant because BM25 requires no GPU, no embedding model, and no vector database.
 
 #### BM25 Performance Heatmap
 
-![BM25 Heatmap](ResultAnalysis/results/bm25_heatmap.png)
+![BM25 Heatmap](./Research/ResultAnalysisWithAlgorithms/bm25_heatmap.png)
 
 The heatmap confirms uniform performance across all three metrics, with Precision@3 marginally lower (0.74) than Accuracy and Recall (0.75) — a typical BM25 characteristic where top-ranked documents are highly relevant but the third result occasionally misses.
 
 #### Query Latency Distribution (n = 5,000)
 
-![BM25 Latency Distribution](ResultAnalysis/results/bm25_latency_distribution.png)
+![BM25 Latency Distribution](./Research/ResultAnalysisWithAlgorithms/bm25_latency_distribution.png)
 
 BM25 query times are **heavily concentrated below 5 ms**, with a median under 3 ms. The distribution is right-skewed with very rare outliers — consistent with sparse retrieval over a fixed-size corpus.
 
 #### Precision Distribution Across Queries
 
-![BM25 Precision Distribution](ResultAnalysis/results/bm25_precision_distribution.png)
+![BM25 Precision Distribution](./Research/ResultAnalysisWithAlgorithms/bm25_precision_distribution.png)
 
 The bimodal distribution — with peaks near **0 and 1** — reflects BM25's binary-like retrieval behavior: queries either match documents very precisely (precision ≈ 1.0) or miss entirely (precision ≈ 0.0). The dominant mass near 1.0 confirms that the majority of clinical queries retrieve highly relevant documents.
 
