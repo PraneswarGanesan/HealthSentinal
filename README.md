@@ -1,4 +1,4 @@
-# HealthSentinel
+i# HealthSentinel
 
 ## Secure Post-Quantum Healthcare Document Intelligence using RAG
 
@@ -64,8 +64,8 @@ HealthSentinel improves on traditional healthcare document systems across every 
 
 
 ## System Architecture
-![System Architecture](./Research/ResultAnalysisWithAlgorithms/architecture-1.png)
-
+<!-- ![System Architecture](./Research/ResultAnalysisWithAlgorithms/architecture-1.png) -->
+<img src="./Research/ResultAnalysisWithAlgorithms/architecture-1.png" width="450" height="250">
 ```
 User Authentication (Supabase JWT)
          ↓
