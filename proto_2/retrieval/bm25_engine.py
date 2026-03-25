@@ -24,6 +24,10 @@ class BM25Engine:
         # Build BM25 index
         self.bm25 = BM25Okapi(tokenized_docs)
 
+    def get_scores(self, query: str):
+        query_tokens = tokenize(query)
+        return self.bm25.get_scores(query_tokens)
+
     def search(self, query: str, top_k: int = 3) -> List[str]:
         """
         Returns top_k most relevant documents for the query
@@ -45,3 +49,5 @@ class BM25Engine:
             results.append(self.documents[idx])
 
         return results
+
+
